@@ -17,14 +17,12 @@
             --card-radius: 20px;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
-
         body {
             min-height: 100vh;
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -32,48 +30,41 @@
             animation: gradient 15s ease infinite;
             color: white;
             padding: 2rem;
-            display: flex; /* For centering the login form */
+            display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
-
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            display: none; /* Hide the content by default */
+            display: none;
         }
-
         header {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         h1 {
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         .subtitle {
             font-size: 1.2rem;
             opacity: 0.8;
         }
-
         .tabs {
             display: flex;
             justify-content: center;
             margin-bottom: 2rem;
             gap: 1rem;
         }
-
         .tab {
             padding: 0.8rem 2rem;
             background: rgba(255, 255, 255, 0.1);
@@ -84,22 +75,18 @@
             transition: all 0.3s ease;
             font-weight: 500;
         }
-
         .tab.active {
             background: rgba(255, 255, 255, 0.3);
             font-weight: 600;
         }
-
         .tab:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-
         .events-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 1.5rem;
         }
-
         .event-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(var(--glass-blur));
@@ -110,18 +97,15 @@
             box-shadow: var(--shadow);
             position: relative;
         }
-
         .event-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
-
         .event-date {
             font-size: 0.9rem;
             opacity: 0.8;
             margin-bottom: 0.5rem;
         }
-
         .event-time {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
@@ -130,32 +114,27 @@
             font-size: 0.85rem;
             margin-bottom: 0.8rem;
         }
-
         .event-name {
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 1rem;
             line-height: 1.3;
         }
-
         .event-details {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
-
         .detail-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             font-size: 0.95rem;
         }
-
         .detail-item i {
             opacity: 0.7;
         }
-
         .register-btn {
             display: inline-block;
             padding: 0.7rem 1.5rem;
@@ -168,20 +147,16 @@
             transition: all 0.3s ease;
             text-align: center;
         }
-
         .register-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
-
         .tab-content {
             display: none;
         }
-
         .tab-content.active {
             display: block;
         }
-
         .today-badge {
             background: rgba(255, 255, 255, 0.3);
             padding: 0.3rem 0.8rem;
@@ -191,7 +166,6 @@
             display: inline-block;
             margin-bottom: 0.5rem;
         }
-
         /* Countdown Badge Styles */
         .countdown-badge {
             position: absolute;
@@ -206,7 +180,6 @@
             align-items: center;
             gap: 0.4rem;
         }
-
         .status-dot {
             width: 8px;
             height: 8px;
@@ -214,23 +187,19 @@
             display: inline-block;
             animation: pulse 1.5s infinite;
         }
-
         .dot-orange { background-color: #FFC400; }
         .dot-green { background-color: #32CD32; }
         .dot-red { background-color: #D32F2F; animation: none; }
-
         @keyframes pulse {
             0% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.2); opacity: 0.7; }
             100% { transform: scale(1); opacity: 1; }
         }
-
         .loading {
             text-align: center;
             padding: 2rem;
             font-size: 1.2rem;
         }
-
         .error-message, .no-events {
             background: rgba(255, 255, 255, 0.1);
             padding: 1rem;
@@ -239,23 +208,19 @@
             margin: 1rem 0;
             opacity: 0.8;
         }
-
         @media (max-width: 768px) {
             .events-container {
                 grid-template-columns: 1fr;
             }
-            
             .tabs {
                 flex-direction: column;
                 align-items: center;
             }
-            
             .tab {
                 width: 100%;
                 text-align: center;
             }
         }
-
         /* Login Form Styles */
         #login-container {
             display: flex;
@@ -271,15 +236,12 @@
             max-width: 400px;
             width: 90%;
             text-align: center;
-            transition: opacity 0.5s ease;
         }
-
         #login-container h2 {
             font-size: 1.8rem;
             font-weight: 600;
         }
-
-        #password-input {
+        #email-input, #password-input {
             width: 100%;
             padding: 0.8rem;
             border: var(--glass-border);
@@ -289,16 +251,13 @@
             font-size: 1rem;
             text-align: center;
         }
-
-        #password-input::placeholder {
+        #email-input::placeholder, #password-input::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
-
-        #password-input:focus {
+        #email-input:focus, #password-input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.3);
         }
-
         #login-button {
             width: 100%;
             padding: 0.8rem;
@@ -310,11 +269,9 @@
             cursor: pointer;
             transition: background 0.3s ease;
         }
-
         #login-button:hover {
             background: rgba(255, 255, 255, 0.5);
         }
-
         #login-error {
             color: #ffcccc;
             opacity: 0;
@@ -324,10 +281,11 @@
 </head>
 <body>
     <div id="login-container">
-        <h2>Enter Passcode</h2>
-        <input type="password" id="password-input" placeholder="Enter password" autocomplete="off">
-        <button id="login-button">Login</button>
-        <p id="login-error">Incorrect password. Please try again.</p>
+        <h2>Please Sign In</h2>
+        <input type="email" id="email-input" placeholder="Enter Email" autocomplete="off">
+        <input type="password" id="password-input" placeholder="Enter Password" autocomplete="off">
+        <button id="login-button">Sign In</button>
+        <p id="login-error">Sign-in failed. Please check your credentials.</p>
     </div>
 
     <div class="container" id="main-content">
@@ -340,7 +298,7 @@
             <div class="tab active" onclick="switchTab('today')">Today's Events</div>
             <div class="tab" onclick="switchTab('upcoming')">Upcoming Events</div>
         </div>
-
+        
         <div id="today" class="tab-content active">
             <div class="events-container" id="today-events">
                 <div class="loading">Loading today's events...</div>
@@ -354,51 +312,70 @@
         </div>
     </div>
 
-    <script>
-        // URL to your JSON file on GitHub (use raw.githubusercontent.com)
-        const JSON_URL = 'https://raw.githubusercontent.com/mycsd/mycsd/main/activities.json';
-        
-        // --- SECURE PASSWORD ---
-        // IMPORTANT: Replace 'your_secure_password_here' with a strong password.
-        const CORRECT_PASSWORD = 'iloveusm';
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-        // --- PASSWORD CHECK LOGIC ---
+    <script>
+        // --- STEP 1: Paste Your Firebase Config Here ---
+        // You got this from Firebase Console > Project Settings > Your apps (Web app)
+        const firebaseConfig = {
+          apiKey: "YOUR_API_KEY",
+          authDomain: "YOUR_AUTH_DOMAIN",
+          projectId: "YOUR_PROJECT_ID",
+          storageBucket: "YOUR_STORAGE_BUCKET",
+          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+          appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = app.auth();
+        const db = app.firestore();
+
+        // --- AUTHENTICATION LOGIC ---
         const loginContainer = document.getElementById('login-container');
         const mainContent = document.getElementById('main-content');
+        const emailInput = document.getElementById('email-input');
         const passwordInput = document.getElementById('password-input');
         const loginButton = document.getElementById('login-button');
         const loginError = document.getElementById('login-error');
 
-        function handleLogin() {
-            if (passwordInput.value === CORRECT_PASSWORD) {
-                // Correct password, show the main content
-                loginContainer.style.opacity = '0';
-                setTimeout(() => {
-                    loginContainer.style.display = 'none';
-                    mainContent.style.display = 'block';
-                    loadEvents(); // Load the events only after successful login
-                }, 500); // Wait for the fade-out transition
-            } else {
-                // Incorrect password, show error message
+        async function handleLogin() {
+            try {
+                await auth.signInWithEmailAndPassword(emailInput.value, passwordInput.value);
+            } catch (error) {
+                console.error("Sign-in error:", error);
                 loginError.style.opacity = '1';
-                setTimeout(() => {
-                    loginError.style.opacity = '0';
-                }, 2000); // Hide error after 2 seconds
+                setTimeout(() => loginError.style.opacity = '0', 3000);
             }
         }
-
+        
         loginButton.addEventListener('click', handleLogin);
+        emailInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
         passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleLogin();
+            if (e.key === 'Enter') handleLogin();
+        });
+
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                loginContainer.style.display = 'none';
+                mainContent.style.display = 'block';
+                loadEvents();
+            } else {
+                loginContainer.style.display = 'flex';
+                mainContent.style.display = 'none';
             }
         });
-        
-        // --- EXISTING CODE FROM YOUR PAGE, MODIFIED TO BE CALLED AFTER LOGIN ---
+
+        // --- EVENT LOADING LOGIC (MODIFIED FOR FIRESTORE) ---
 
         function formatDate(dateString) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
+            const date = new Date(`${dateString}T00:00:00Z`);
+            return date.toLocaleDateString('en-US', options);
         }
 
         function formatTime(timeString) {
@@ -407,45 +384,31 @@
             const hour = parseInt(hours);
             const ampm = hour >= 12 ? 'PM' : 'AM';
             const hour12 = hour % 12 || 12;
-            return `${hour12}:${minutes} ${ampm}`;
-        }
-
-        function getCurrentTimePenang() {
-            const now = new Date();
-            const options = {
-                timeZone: 'Asia/Kuala_Lumpur',
-                hour: '2-digit',
-                minute: '2-digit',
-                hourCycle: 'h23'
-            };
-            return now.toLocaleTimeString('en-US', options);
+            return `${hour12}:${minutes.padStart(2, '0')} ${ampm}`;
         }
 
         function createEventCard(event, isToday = false) {
             const startTime = formatTime(event.time);
-            const endTime = formatTime(event['end time']);
+            const endTime = formatTime(event.end_time);
             const timeDisplay = startTime && endTime ? `${startTime} - ${endTime}` : startTime || '';
             let countdownBadge = '';
             if (isToday) {
-                countdownBadge = `<div class="countdown-badge" id="countdown-${event['event name'].replace(/\s/g, '-')}-${event.date}"></div>`;
+                countdownBadge = `<div class="countdown-badge" id="countdown-${event.event_name.replace(/\s/g, '-')}-${event.date}"></div>`;
             }
-
-            const registrationLink = event['registration link'];
+            const registrationLink = event.registration_link;
             let buttonText = 'Register Now';
             let hrefLink = registrationLink;
-
             if (!registrationLink || registrationLink.toLowerCase() === 'walk in') {
                 buttonText = 'Walk In';
                 hrefLink = '#';
             }
-
             return `
                 <div class="event-card">
                     ${isToday ? '<div class="today-badge">Today</div>' : ''}
                     ${countdownBadge}
                     <div class="event-date">${formatDate(event.date)}</div>
                     ${timeDisplay ? `<div class="event-time">${timeDisplay}</div>` : ''}
-                    <h3 class="event-name">${event['event name']}</h3>
+                    <h3 class="event-name">${event.event_name}</h3>
                     <div class="event-details">
                         <div class="detail-item">
                             <i>📍</i>
@@ -465,17 +428,17 @@
             const todayEventsContainer = document.getElementById('today-events');
             const eventCards = todayEventsContainer.querySelectorAll('.event-card');
             const now = new Date();
-            const today = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
-            today.setHours(0, 0, 0, 0);
+            const todayPenang = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
+            todayPenang.setHours(0, 0, 0, 0);
 
             eventCards.forEach(card => {
                 const eventName = card.querySelector('.event-name').textContent;
                 const eventDateText = card.querySelector('.event-date').textContent;
-                const originalEvent = window.allEvents.today_events.find(e => e['event name'] === eventName && formatDate(e.date) === eventDateText);
+                const originalEvent = window.allEvents.today_events.find(e => e.event_name === eventName && formatDate(e.date) === eventDateText);
                 if (!originalEvent) return;
 
                 const eventStart = new Date(`${originalEvent.date}T${originalEvent.time}:00+08:00`);
-                const eventEnd = new Date(`${originalEvent.date}T${originalEvent['end time']}:00+08:00`);
+                const eventEnd = new Date(`${originalEvent.date}T${originalEvent.end_time}:00+08:00`);
 
                 const countdownBadge = card.querySelector('.countdown-badge');
                 if (!countdownBadge) return;
@@ -505,19 +468,31 @@
             const todayEventsContainer = document.getElementById('today-events');
             const upcomingEventsContainer = document.getElementById('upcoming-events');
 
+            todayEventsContainer.innerHTML = `<div class="loading">Loading today's events...</div>`;
+            upcomingEventsContainer.innerHTML = `<div class="loading">Loading upcoming events...</div>`;
+
             try {
-                const response = await fetch(JSON_URL);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const eventData = await response.json();
-                window.allEvents = eventData;
+                const now = new Date();
+                const todayPenang = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
+                const todayDateString = todayPenang.toISOString().split('T')[0];
+
+                const eventsSnapshot = await db.collection('events').get();
+                const allEvents = eventsSnapshot.docs.map(doc => doc.data());
+                window.allEvents = { today_events: [], upcoming_events: [] };
+
+                allEvents.forEach(event => {
+                    if (event.date === todayDateString) {
+                        window.allEvents.today_events.push(event);
+                    } else if (new Date(event.date) > todayPenang) {
+                        window.allEvents.upcoming_events.push(event);
+                    }
+                });
 
                 todayEventsContainer.innerHTML = '';
                 upcomingEventsContainer.innerHTML = '';
 
-                if (eventData.today_events && eventData.today_events.length > 0) {
-                    eventData.today_events.forEach(event => {
+                if (window.allEvents.today_events.length > 0) {
+                    window.allEvents.today_events.forEach(event => {
                         todayEventsContainer.innerHTML += createEventCard(event, true);
                     });
                     setInterval(updateCountdown, 60 * 1000);
@@ -526,8 +501,8 @@
                     todayEventsContainer.innerHTML = '<div class="no-events">No events scheduled for today</div>';
                 }
 
-                if (eventData.upcoming_events && eventData.upcoming_events.length > 0) {
-                    eventData.upcoming_events.forEach(event => {
+                if (window.allEvents.upcoming_events.length > 0) {
+                    window.allEvents.upcoming_events.forEach(event => {
                         upcomingEventsContainer.innerHTML += createEventCard(event);
                     });
                 } else {
@@ -550,9 +525,6 @@
             document.getElementById(tabId).classList.add('active');
             document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
         }
-
-        // Initially, the events are not loaded. They are only loaded on successful login.
-        // window.onload = loadEvents; // Removed this line
     </script>
 </body>
 </html>
