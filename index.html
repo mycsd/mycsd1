@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="/mycsd/sahur%20eye.png">
     
     <style>
+        /* ... (Your CSS remains the same) ... */
         :root {
             --primary-color: rgba(255, 255, 255, 0.8);
             --secondary-color: rgba(255, 255, 255, 0.6);
@@ -314,7 +315,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
 
     <script>
         // --- STEP 1: Paste Your Firebase Config Here ---
@@ -322,6 +323,7 @@
         const firebaseConfig = {
           apiKey: "YOUR_API_KEY",
           authDomain: "YOUR_AUTH_DOMAIN",
+          databaseURL: "YOUR_DATABASE_URL",
           projectId: "YOUR_PROJECT_ID",
           storageBucket: "YOUR_STORAGE_BUCKET",
           messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
@@ -331,7 +333,7 @@
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = app.auth();
-        const db = app.firestore();
+        const db = app.database();
 
         // --- AUTHENTICATION LOGIC ---
         const loginContainer = document.getElementById('login-container');
@@ -370,7 +372,7 @@
             }
         });
 
-        // --- EVENT LOADING LOGIC (MODIFIED FOR FIRESTORE) ---
+        // --- EVENT LOADING LOGIC (MODIFIED FOR REALTIME DATABASE) ---
 
         function formatDate(dateString) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -464,35 +466,36 @@
             });
         }
 
-        async function loadEvents() {
+        function loadEvents() {
             const todayEventsContainer = document.getElementById('today-events');
             const upcomingEventsContainer = document.getElementById('upcoming-events');
 
             todayEventsContainer.innerHTML = `<div class="loading">Loading today's events...</div>`;
             upcomingEventsContainer.innerHTML = `<div class="loading">Loading upcoming events...</div>`;
 
-            try {
+            // Use the onValue function to listen for data changes
+            db.ref().on('value', (snapshot) => {
+                const eventData = snapshot.val();
+                if (!eventData) {
+                    todayEventsContainer.innerHTML = '<div class="no-events">No events scheduled.</div>';
+                    upcomingEventsContainer.innerHTML = '<div class="no-events">No upcoming events scheduled.</div>';
+                    return;
+                }
+
                 const now = new Date();
                 const todayPenang = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
                 const todayDateString = todayPenang.toISOString().split('T')[0];
 
-                const eventsSnapshot = await db.collection('events').get();
-                const allEvents = eventsSnapshot.docs.map(doc => doc.data());
-                window.allEvents = { today_events: [], upcoming_events: [] };
+                const today_events = eventData.today_events || [];
+                const upcoming_events = eventData.upcoming_events || [];
 
-                allEvents.forEach(event => {
-                    if (event.date === todayDateString) {
-                        window.allEvents.today_events.push(event);
-                    } else if (new Date(event.date) > todayPenang) {
-                        window.allEvents.upcoming_events.push(event);
-                    }
-                });
+                window.allEvents = { today_events, upcoming_events };
 
                 todayEventsContainer.innerHTML = '';
                 upcomingEventsContainer.innerHTML = '';
 
-                if (window.allEvents.today_events.length > 0) {
-                    window.allEvents.today_events.forEach(event => {
+                if (today_events.length > 0) {
+                    today_events.forEach(event => {
                         todayEventsContainer.innerHTML += createEventCard(event, true);
                     });
                     setInterval(updateCountdown, 60 * 1000);
@@ -501,18 +504,14 @@
                     todayEventsContainer.innerHTML = '<div class="no-events">No events scheduled for today</div>';
                 }
 
-                if (window.allEvents.upcoming_events.length > 0) {
-                    window.allEvents.upcoming_events.forEach(event => {
+                if (upcoming_events.length > 0) {
+                    upcoming_events.forEach(event => {
                         upcomingEventsContainer.innerHTML += createEventCard(event);
                     });
                 } else {
                     upcomingEventsContainer.innerHTML = '<div class="no-events">No upcoming events scheduled</div>';
                 }
-            } catch (error) {
-                console.error('Error loading events:', error);
-                todayEventsContainer.innerHTML = `<div class="error-message">Failed to load events. Please try again later.</div>`;
-                upcomingEventsContainer.innerHTML = `<div class="error-message">Failed to load events. Please try again later.</div>`;
-            }
+            });
         }
 
         function switchTab(tabId) {
